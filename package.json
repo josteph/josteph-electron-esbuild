@@ -1,0 +1,96 @@
+{
+  "name": "josteph-electron-esbuild",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "electron-esbuild dev",
+    "build": "electron-esbuild build",
+    "package": "electron-builder"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.37",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "app-root-dir": "^1.0.2",
+    "electron": "^12.0.2",
+    "electron-builder": "^22.10.5",
+    "electron-devtools-installer": "^3.2.0",
+    "electron-esbuild": "1.x",
+    "electron-log": "^4.3.5",
+    "electron-util": "^0.14.2",
+    "esbuild": "^0.11.22",
+    "esbuild-node-externals": "^1.2.0",
+    "esbuild-plugin-sass": "^0.5.0",
+    "fs-extra": "^10.0.0",
+    "fuse.js": "^6.4.6",
+    "gray-matter": "^4.0.3",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "react-feather": "^2.0.9",
+    "react-helmet-async": "^1.0.9",
+    "react-router-dom": "^5.2.0",
+    "remark": "^12.0.1",
+    "remark-autolink-headings": "^6.0.1",
+    "remark-external-links": "^8.0.0",
+    "remark-hint": "^1.0.9",
+    "remark-html": "^13.0.1",
+    "remark-loader": "^3.0.0",
+    "remark-prism": "^1.1.14",
+    "remark-slug": "^6.0.0",
+    "remark-toc": "^7.2.0",
+    "typescript": "^4.2.3"
+  },
+  "build": {
+    "productName": "Josteph",
+    "appId": "org.ee.Josteph",
+    "extraMetadata": {
+      "name": "josteph-electron-esbuild",
+      "main": "main.js"
+    },
+    "files": [
+      {
+        "from": ".",
+        "filter": [
+          "package.json"
+        ]
+      },
+      {
+        "from": "dist/main"
+      },
+      {
+        "from": "dist/renderer"
+      }
+    ],
+    "win": {
+      "target": [
+        "zip"
+      ]
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "type": "distribution",
+      "hardenedRuntime": true,
+      "entitlements": "resources/entitlements.mac.plist",
+      "entitlementsInherit": "resources/entitlements.mac.plist",
+      "gatekeeperAssess": false
+    },
+    "linux": {
+      "target": [
+        "zip"
+      ]
+    },
+    "directories": {
+      "app": "src",
+      "buildResources": "resources",
+      "output": "release"
+    },
+    "publish": null
+  }
+}

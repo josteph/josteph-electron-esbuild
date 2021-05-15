@@ -1,0 +1,11 @@
+mainConfig:
+  type: esbuild
+  path: config/esbuild.main.config.js
+  src: src/main/main.ts
+  output: dist/main
+rendererConfig:
+  type: esbuild
+  path: config/esbuild.renderer.config.js
+  html: src/renderer/index.html
+  src: src/renderer/index.tsx
+  output: dist/renderer

@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["src/renderer/*"],
+      "@assets/*": ["src/renderer/assets/*"],
+      "@context/*": ["src/renderer/context/*"],
+      "@constants/*": ["src/renderer/constants/*"],
+      "@hooks/*": ["src/renderer/hooks/*"],
+      "@components/*": ["src/renderer/components/*"],
+      "@helpers/*": ["src/renderer/helpers/*"],
+      "@interfaces/*": ["src/renderer/interfaces/*"],
+      "@lib/*": ["src/renderer/lib/*"],
+      "@routes/*": ["src/renderer/pages/*"],
+      "@styles/*": ["src/renderer/styles/*"]
+    },
+    "noEmit": true,
+    "jsx": "react",
+    "target": "es2015",
+    "module": "esnext",
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "allowUnreachableCode": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": false,
+    "noFallthroughCasesInSwitch": true
+  },
+  "exclude": [
+    "dist"
+  ]
+}

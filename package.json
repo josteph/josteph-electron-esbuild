@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "electron-esbuild dev",
     "build": "electron-esbuild build",
-    "package": "electron-builder"
+    "package": "pnpm run build && electron-builder build"
   },
   "devDependencies": {
     "@types/node": "^14.14.37",
@@ -87,7 +87,6 @@
       ]
     },
     "directories": {
-      "app": "src",
       "buildResources": "resources",
       "output": "release"
     },

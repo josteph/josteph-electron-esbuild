@@ -2,6 +2,7 @@ devDependencies:
   '@types/node': 14.14.45
   '@types/react': 17.0.5
   '@types/react-dom': 17.0.5
+  '@types/ws': 7.4.4
   app-root-dir: 1.0.2
   electron: 12.0.7
   electron-builder: 22.10.5
@@ -15,11 +16,13 @@ devDependencies:
   fs-extra: 10.0.0
   fuse.js: 6.4.6
   gray-matter: 4.0.3
+  node-fetch: 2.6.1
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-feather: 2.0.9_react@17.0.2
   react-helmet-async: 1.0.9_react-dom@17.0.2+react@17.0.2
   react-router-dom: 5.2.0_react@17.0.2
+  reconnecting-websocket: 4.4.0
   remark: 12.0.1
   remark-autolink-headings: 6.0.1
   remark-external-links: 8.0.0
@@ -29,6 +32,8 @@ devDependencies:
   remark-slug: 6.0.0
   remark-toc: 7.2.0
   typescript: 4.2.4
+  uWebSockets.js: github.com/uNetworking/uWebSockets.js/archive/v19.2.0.tar.gz
+  ws: 7.4.5
 lockfileVersion: 5.1
 packages:
   /7zip-bin/5.0.3:
@@ -211,6 +216,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-DssMqTV9UnnoxDWu959sDLZzfvqCF0qDNRjaWeYSui9xkFe61kKo4l1TWNTQONpuXEm+gLMRvdlzvNHBamzmEw==
+  /@types/node/14.17.0:
+    dev: true
+    resolution:
+      integrity: sha512-w8VZUN/f7SSbvVReb9SWp6cJFevxb4/nkG65yLAya//98WgocKm5PLDAtSs5CtJJJM+kHmJjO/6mmYW4MHShZA==
   /@types/normalize-package-data/2.4.0:
     dev: true
     resolution:
@@ -254,6 +263,12 @@ packages:
     optional: true
     resolution:
       integrity: sha512-OjJdqx6QlbyZw9LShPwRW+Kmiegeg3eWNI41MQQKaG3vjdU2L9SRElntM51HmHBY1cu7izxQJ1lMYioQh3XMBg==
+  /@types/ws/7.4.4:
+    dependencies:
+      '@types/node': 14.17.0
+    dev: true
+    resolution:
+      integrity: sha512-d/7W23JAXPodQNbOZNXvl2K+bqAQrCMwlh/nuQsPSQk6Fq0opHoPrUw43aHsvSbIiQPr8Of2hkFbnz1XBFVyZQ==
   /@types/yargs-parser/20.2.0:
     dev: true
     resolution:
@@ -2976,6 +2991,12 @@ packages:
     optional: true
     resolution:
       integrity: sha512-ibPK3iA+vaY1eEjESkQkM0BbCqFOaZMiXRTtdB0u7b4djtY6JnsjvPdUHVMg6xQt3B8fpTTWHI9A+ADjM9frzg==
+  /node-fetch/2.6.1:
+    dev: true
+    engines:
+      node: 4.x || >=6.0.0
+    resolution:
+      integrity: sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
   /node-source-walk/4.2.0:
     dependencies:
       '@babel/parser': 7.14.3
@@ -3528,6 +3549,10 @@ packages:
       node: '>=8.10.0'
     resolution:
       integrity: sha512-cMhu7c/8rdhkHXWsY+osBhfSy0JikwpHK/5+imo+LpeasTF8ouErHrlYkwT0++njiyuDvc7OFY5T3ukvZ8qmFQ==
+  /reconnecting-websocket/4.4.0:
+    dev: true
+    resolution:
+      integrity: sha512-D2E33ceRPga0NvTDhJmphEgJ7FUYF0v4lr1ki0csq06OdlxKfugGzN0dSkxM/NfqCxYELK4KcaTOUOjTV6Dcng==
   /redent/3.0.0:
     dependencies:
       indent-string: 4.0.0
@@ -4811,10 +4836,18 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+  github.com/uNetworking/uWebSockets.js/archive/v19.2.0.tar.gz:
+    dev: true
+    name: uWebSockets.js
+    resolution:
+      registry: 'https://registry.npmjs.org/'
+      tarball: 'https://github.com/uNetworking/uWebSockets.js/archive/v19.2.0.tar.gz'
+    version: 19.2.0
 specifiers:
   '@types/node': ^14.14.37
   '@types/react': ^17.0.0
   '@types/react-dom': ^17.0.0
+  '@types/ws': ^7.4.4
   app-root-dir: ^1.0.2
   electron: ^12.0.2
   electron-builder: ^22.10.5
@@ -4828,11 +4861,13 @@ specifiers:
   fs-extra: ^10.0.0
   fuse.js: ^6.4.6
   gray-matter: ^4.0.3
+  node-fetch: ^2.6.1
   react: ^17.0.0
   react-dom: ^17.0.0
   react-feather: ^2.0.9
   react-helmet-async: ^1.0.9
   react-router-dom: ^5.2.0
+  reconnecting-websocket: ^4.4.0
   remark: ^12.0.1
   remark-autolink-headings: ^6.0.1
   remark-external-links: ^8.0.0
@@ -4842,3 +4877,5 @@ specifiers:
   remark-slug: ^6.0.0
   remark-toc: ^7.2.0
   typescript: ^4.2.3
+  uWebSockets.js: 'https://github.com/uNetworking/uWebSockets.js/archive/v19.2.0.tar.gz'
+  ws: ^7.4.5

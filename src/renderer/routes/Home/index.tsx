@@ -1,13 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GitHub, Twitter, Linkedin } from 'react-feather';
 import { Link } from 'react-router-dom';
 import type { Blog } from '@interfaces/blogs';
 import { getAllBlogs } from '@lib/docs';
+import { init as initSocket } from '@lib/socket';
+import { MESSAGE_ENUM } from '@shared/constants';
 import './styles.scss';
 
 const docs = getAllBlogs();
 
 const HomePage = () => {
+  useEffect(() => {
+    const ws = initSocket();
+
+    if (!ws) {
+      return undefined;
+    }
+
+    const interval = setInterval(() => {
+      const msg = {
+        type: MESSAGE_ENUM.START_FETCH,
+        url: 'https://jsonplaceholder.typicode.com/todos/1',
+      };
+
+      ws.send(JSON.stringify(msg));
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+      ws.close();
+    };
+  }, []);
+
   return (
     <main>
       <section className="main-container">

@@ -1,10 +1,13 @@
 import path from 'path'
+import { fork } from 'child_process';
 import { format } from 'url'
 import { shell, app, BrowserWindow } from 'electron'
 import { is } from 'electron-util'
+import type { ChildProcess } from 'child_process';
 import MenuBuilder from './menu';
 
-let win: BrowserWindow | null = null
+let win: BrowserWindow | null = null;
+let socket: ChildProcess | null = null;
 
 const installExtensions = async () => {
   const installer = require('electron-devtools-installer');
@@ -40,7 +43,7 @@ async function createWindow() {
     titleBarStyle: 'hidden',
   })
 
-  const isDev = is.development
+  const isDev = is.development;
 
   if (isDev) {
     win.loadURL('http://localhost:9080')
@@ -58,11 +61,14 @@ async function createWindow() {
   menuBuilder.buildMenu();
 
   win.on('closed', () => {
-    win = null
-  })
+    win = null;
+    if (socket) {
+      socket.unref();
+    }
+  });
 
   win.webContents.on('devtools-opened', () => {
-    win!.focus()
+    win!.focus();
   })
 
   win.webContents.setWindowOpenHandler(({ url }) => {
@@ -81,16 +87,30 @@ async function createWindow() {
   })
 }
 
-app.on('ready', createWindow)
+app.on('ready', () => {
+  socket = fork(path.join(__dirname, `./socket${process.env.UNSTABLE_UWS ? '.uws' : ''}.js`), [], {
+    detached: true,
+  });
+
+  createWindow();
+});
 
 app.on('window-all-closed', () => {
   if (!is.macos) {
-    app.quit()
+    app.quit();
+
+    if (socket) {
+      socket.unref();
+    }
   }
 })
 
 app.on('activate', () => {
   if (win === null && app.isReady()) {
-    createWindow()
+    socket = fork(path.join(__dirname, `./socket${process.env.UNSTABLE_UWS ? '.uws' : ''}.js`), [], {
+      detached: true,
+    });
+
+    createWindow();
   }
 })

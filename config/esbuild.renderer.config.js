@@ -11,7 +11,7 @@ module.exports = {
   entryPoints: [path.resolve('src/renderer/index.tsx')],
   bundle: true,
   target: 'chrome89', // electron version target
-  plugins: [sassPlugin(), aliasResolverPlugin({ srcDir: 'src/renderer' }), remarkPlugin()],
+  plugins: [sassPlugin(), aliasResolverPlugin(), remarkPlugin()],
   loader: {
     '.ts': 'ts',
     '.tsx': 'tsx',

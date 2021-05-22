@@ -1,10 +1,9 @@
 const path = require('path');
 const fs = require('fs');
-const getTSConfig = require('../utils/tsConfig');
-const { tsConfig } = getTSConfig(process.cwd());
+const tsConfig = require('../tsconfig.json');
 
 function moduleAliasResolver({ contents, args, srcDir }) {
-  if (!(tsConfig && tsConfig.options && tsConfig.options.paths)) {
+  if (!(tsConfig && tsConfig.options && tsConfig.options.paths && tsConfig.options.paths.length < 1)) {
     return contents;
   }
 

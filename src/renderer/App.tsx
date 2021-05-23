@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
+import socket from '@lib/socket';
+import { MESSAGE_ENUM } from '@shared/constants';
 import Routes from './routes';
 import './App.global.scss';
 
@@ -29,6 +31,29 @@ function App() {
       if (mql) {
         mql.removeEventListener('change', handler);
       }
+    };
+  }, []);
+
+
+  useEffect(() => {
+    const ws = socket.init();
+
+    if (!ws) {
+      return undefined;
+    }
+
+    const interval = setInterval(() => {
+      const msg = {
+        type: MESSAGE_ENUM.START_FETCH,
+        url: `https://jsonplaceholder.typicode.com/todos/${Math.floor(Math.random() * 100) + 1}`,
+      };
+
+      ws.send(JSON.stringify(msg));
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+      ws.close();
     };
   }, []);
 

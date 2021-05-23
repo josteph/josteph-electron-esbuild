@@ -43,7 +43,7 @@ app.on('close', function close() {
   clearInterval(interval);
 });
 
-function onConnection(ws) {
+function onConnection(ws: WebSocket) {
   const id = generateUuid();
   const selfMsg = {
     type: MESSAGE_ENUM.SELF_CONNECTED,
@@ -53,7 +53,7 @@ function onConnection(ws) {
   ws.send(JSON.stringify(selfMsg));
 }
 
-async function onMessage(ws, message) {
+async function onMessage(ws: WebSocket, message) {
   let clientMsg;
 
   try {

@@ -64,9 +64,6 @@ async function createWindow() {
 
   win.on('closed', () => {
     win = null;
-    if (socket) {
-      socket.unref();
-    }
   });
 
   win.webContents.on('devtools-opened', () => {
@@ -89,9 +86,7 @@ async function createWindow() {
 }
 
 app.on('ready', () => {
-  socket = fork(path.join(__dirname, `./socket${process.env.UNSTABLE_UWS ? '.uws' : ''}.js`), [], {
-    detached: true,
-  });
+  socket = fork(path.join(__dirname, `./socket${process.env.UNSTABLE_UWS ? '.uws' : ''}.js`), []);
 
   createWindow();
 });
@@ -108,9 +103,7 @@ app.on('window-all-closed', () => {
 
 app.on('activate', () => {
   if (win === null && app.isReady()) {
-    socket = fork(path.join(__dirname, `./socket${process.env.UNSTABLE_UWS ? '.uws' : ''}.js`), [], {
-      detached: true,
-    });
+    socket = fork(path.join(__dirname, `./socket${process.env.UNSTABLE_UWS ? '.uws' : ''}.js`), []);
 
     createWindow();
   }

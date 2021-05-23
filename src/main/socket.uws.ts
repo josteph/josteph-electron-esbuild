@@ -1,14 +1,8 @@
 import uWS from 'uWebSockets.js';
-import crypto from 'crypto';
 import fetch from 'node-fetch';
 import { MESSAGE_ENUM, PORT } from '@shared/constants';
+import generateUuid from './helpers/uuid';
 // import readJson from './helpers/readJson';
-
-const generateUuid = () => {
-  return [4, 2, 2, 2, 6] // or 8-4-4-4-12 in hex
-    .map(group => crypto.randomBytes(group).toString('hex'))
-    .join('-');
-};
 
 const decoder = new TextDecoder('utf-8');
 

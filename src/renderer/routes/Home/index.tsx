@@ -20,7 +20,7 @@ const HomePage = () => {
     const interval = setInterval(() => {
       const msg = {
         type: MESSAGE_ENUM.START_FETCH,
-        url: 'https://jsonplaceholder.typicode.com/todos/1',
+        url: `https://jsonplaceholder.typicode.com/todos/${Math.floor(Math.random() * 100) + 1}`,
       };
 
       ws.send(JSON.stringify(msg));

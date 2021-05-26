@@ -1,48 +1,64 @@
-import { MESSAGE_ENUM, PORT } from '@shared/constants';
-import ReconnectingWebSocket from 'reconnecting-websocket';
 
-export default (() => {
-  let ws: ReconnectingWebSocket;
+import { MESSAGE_ENUM } from '@shared/constants';
 
-  function init() {
-    if (ws instanceof ReconnectingWebSocket) {
-      return ws;
+let worker: Worker;
+let webSocketState: number = WebSocket.CONNECTING;
+let sessionId: string;
+
+// Listen to broadcasts from server
+function handleMessage(msg) {
+  switch (msg.type) {
+    case 'WSState':
+      webSocketState = msg.state;
+      break;
+    case MESSAGE_ENUM.SUCCESS_FETCH:
+      console.groupCollapsed(`[${msg.url}]: fetch success!`);
+      console.log(msg.body);
+      console.groupEnd();
+      break;
+    case MESSAGE_ENUM.FAILED_FETCH:
+      console.groupCollapsed(`[${msg.url}]: fetch error!`);
+      console.error(msg.error);
+      console.groupEnd();
+      break;
+    case MESSAGE_ENUM.SELF_CONNECTED:
+      sessionId = msg.id;
+      console.log(`You are connected! Your session id is ${sessionId}`);
+      break;
+    default:
+      console.log("Unknown message type.");
+      break;
+  }
+}
+
+// Use this method to send data to the server.
+export function postMessageToWSServer(message) {
+  if (webSocketState === WebSocket.CONNECTING) {
+    console.log("Still connecting to the server, try again later!");
+    
+    if (worker) {
+      worker.terminate();
     }
 
-    ws = new ReconnectingWebSocket(`ws://localhost:${PORT}/fetcher`);
+    worker = new Worker('./worker.js');
+  } else if (webSocketState === WebSocket.CLOSING  || webSocketState === WebSocket.CLOSED) {
+    console.log("Connection Closed!");
+  } else {
+    worker.postMessage(message);
+  }
+}
 
-    ws.addEventListener('message', event => {
-      const msg = JSON.parse(event.data);
-
-      switch (msg.type) {
-        case MESSAGE_ENUM.SUCCESS_FETCH:
-          console.groupCollapsed(`[${msg.url}]: fetch success!`);
-          console.log(msg.body);
-          console.groupEnd();
-          break;
-        case MESSAGE_ENUM.FAILED_FETCH:
-          console.groupCollapsed(`[${msg.url}]: fetch error!`);
-          console.error(msg.error);
-          console.groupEnd();
-          break;
-        case MESSAGE_ENUM.SELF_CONNECTED:
-          console.log(`You are connected! Your session id is ${msg.id}`);
-          break;
-        default:
-          console.log("Unknown message type.");
-          break;
-      }
-    });
-
-    return ws;
+export function init() {
+  if (worker) {
+    return worker;
   }
 
-  function getInstance() {
-    return ws;
-  }
+  // worker.js will be generated in the same level as index.js
+  worker = new Worker('./worker.js');
 
-  return {
-    init,
-    getInstance,
+  worker.onmessage = event => {
+    handleMessage(event.data);
   };
-})();
+
+  return worker;
+}

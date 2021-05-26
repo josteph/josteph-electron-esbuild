@@ -93,10 +93,10 @@ app.on('ready', () => {
 app.on('window-all-closed', () => {
   if (!is.macos) {
     app.quit();
+  }
 
-    if (socket) {
-      socket.unref();
-    }
+  if (socket) {
+    socket.unref();
   }
 })
 

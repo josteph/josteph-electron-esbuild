@@ -7,7 +7,7 @@ module.exports = {
   platform: 'node',
   entryPoints: [path.resolve('src/main/main.ts')],
   bundle: true,
-  target: 'node14.16.0', // electron version target
+  target: 'node14.17.0', // electron version target
   loader: {
     '.ts': 'ts',
   },

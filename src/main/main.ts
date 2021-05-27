@@ -67,10 +67,11 @@ async function createWindow() {
     win!.focus()
   })
 
-  win.webContents.on('new-window', (event, url) => {
-    event.preventDefault();
+  win.webContents.setWindowOpenHandler(({ url }) => {
     shell.openExternal(url);
-  });
+
+    return { action: 'deny' };
+  })
 
   win.on('ready-to-show', () => {
     win!.show()

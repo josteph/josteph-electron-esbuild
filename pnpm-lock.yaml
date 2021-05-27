@@ -3,7 +3,7 @@ devDependencies:
   '@types/react': 17.0.5
   '@types/react-dom': 17.0.5
   app-root-dir: 1.0.2
-  electron: 12.0.7
+  electron: 13.0.1
   electron-builder: 22.10.5
   electron-devtools-installer: 3.2.0
   electron-esbuild: 1.4.1_esbuild@0.11.22
@@ -211,6 +211,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-DssMqTV9UnnoxDWu959sDLZzfvqCF0qDNRjaWeYSui9xkFe61kKo4l1TWNTQONpuXEm+gLMRvdlzvNHBamzmEw==
+  /@types/node/14.17.0:
+    dev: true
+    resolution:
+      integrity: sha512-w8VZUN/f7SSbvVReb9SWp6cJFevxb4/nkG65yLAya//98WgocKm5PLDAtSs5CtJJJM+kHmJjO/6mmYW4MHShZA==
   /@types/normalize-package-data/2.4.0:
     dev: true
     resolution:
@@ -1450,10 +1454,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-pnnRJiWajDcTtEAS33RgP3XVO+9cJjOlBA0BKk6cABjcPxihgCwiGWplCOHc0lH43f68ZJZweiunwomJC+TWng==
-  /electron/12.0.7:
+  /electron/13.0.1:
     dependencies:
       '@electron/get': 1.12.4
-      '@types/node': 14.14.45
+      '@types/node': 14.17.0
       extract-zip: 1.7.0
     dev: true
     engines:
@@ -1461,7 +1465,7 @@ packages:
     hasBin: true
     requiresBuild: true
     resolution:
-      integrity: sha512-722TZNKDuLpEmj96AzTYFKHaJEH98xgOBH0aldStaPXI1xDFfb9SJQQuirvwFlkwG5OqQdz6Ne3OwwJ7Dbs5nQ==
+      integrity: sha512-ds1cf0m46nStil0jbM2r9W/p+Kprdq22+2MikIUqEu69eGl1c86IinQVrpmJ9bR4RshDSF4j3uD32a0bsHDMnQ==
   /emoji-regex/6.1.1:
     dev: true
     resolution:
@@ -4816,7 +4820,7 @@ specifiers:
   '@types/react': ^17.0.0
   '@types/react-dom': ^17.0.0
   app-root-dir: ^1.0.2
-  electron: ^12.0.2
+  electron: ^13.0.0
   electron-builder: ^22.10.5
   electron-devtools-installer: ^3.2.0
   electron-esbuild: ^1.4.1

@@ -6,7 +6,7 @@ devDependencies:
   electron: 13.0.1
   electron-builder: 22.10.5
   electron-devtools-installer: 3.2.0
-  electron-esbuild: 1.4.1_esbuild@0.11.22
+  electron-esbuild: 1.5.0_esbuild@0.11.22
   electron-log: 4.3.5
   electron-util: 0.14.2
   esbuild: 0.11.22
@@ -1393,7 +1393,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-t3UczsYugm4OAbqvdImMCImIMVdFzJAHgbwHpkl5jmfu1izVgUcP/mnrPqJIpEeCK1uZGpt+yHgWEN+9EwoYhQ==
-  /electron-esbuild/1.4.1_esbuild@0.11.22:
+  /electron-esbuild/1.5.0_esbuild@0.11.22:
     dependencies:
       chokidar: 3.5.1
       compression: 1.7.4
@@ -1425,7 +1425,7 @@ packages:
       webpack-dev-server:
         optional: true
     resolution:
-      integrity: sha512-b43JO6TkI0/t2gZegmaYcZaqUnHsvg0JhlhuTeoxh4gRIBNyeomFCHYQ4vGXaDOtz6jckObQ7KJsFVIdVaw6Ug==
+      integrity: sha512-TYDURbJCDDlQFgm0RUyPSFdxyX7zPXiae5l9eUIDapbV4Y4FeIMs3US8AIqcoq4XveYjJ3h9ZQOFQyfOf/VuGg==
   /electron-is-dev/1.2.0:
     dev: true
     resolution:
@@ -4823,7 +4823,7 @@ specifiers:
   electron: ^13.0.0
   electron-builder: ^22.10.5
   electron-devtools-installer: ^3.2.0
-  electron-esbuild: ^1.4.1
+  electron-esbuild: ^1.5.0
   electron-log: ^4.3.5
   electron-util: ^0.14.2
   esbuild: ^0.11.22

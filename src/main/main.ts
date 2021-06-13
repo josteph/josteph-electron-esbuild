@@ -35,9 +35,7 @@ async function createWindow() {
     width: 1024,
     height: 728,
     webPreferences: {
-      nodeIntegration: true,
       enableRemoteModule: false,
-      contextIsolation: false,
     },
     titleBarStyle: 'hidden',
   })

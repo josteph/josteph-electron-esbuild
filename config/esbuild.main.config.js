@@ -1,14 +1,20 @@
-const path = require('path')
+const path = require('path');
+const aliasResolverPlugin = require('../esbuildPlugins/esbuild-plugin-alias-resolver');
 
 /**
  * @var {Partial<import('esbuild').BuildOptions>}
  */
 module.exports = {
   platform: 'node',
-  entryPoints: [path.resolve('src/main/main.ts')],
+  entryPoints: [
+    path.resolve('src/main/main.ts'),
+    path.resolve('src/main/socket.ts'),
+    path.resolve('src/main/socket.uws.ts'),
+  ],
   bundle: true,
   target: 'node14.17.0', // electron version target
   loader: {
     '.ts': 'ts',
   },
+  plugins: [aliasResolverPlugin()],
 }

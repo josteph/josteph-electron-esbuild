@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/*": ["src/renderer/*"],
+      "@/*": ["src/*"],
       "@assets/*": ["src/renderer/assets/*"],
       "@context/*": ["src/renderer/context/*"],
       "@constants/*": ["src/renderer/constants/*"],
@@ -11,7 +11,8 @@
       "@interfaces/*": ["src/renderer/interfaces/*"],
       "@lib/*": ["src/renderer/lib/*"],
       "@routes/*": ["src/renderer/pages/*"],
-      "@styles/*": ["src/renderer/styles/*"]
+      "@styles/*": ["src/renderer/styles/*"],
+      "@shared/*": ["src/shared/*"]
     },
     "noEmit": true,
     "jsx": "react",

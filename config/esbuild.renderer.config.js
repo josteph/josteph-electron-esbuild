@@ -8,7 +8,10 @@ const remarkPlugin = require('../esbuildPlugins/esbuild-plugin-remark');
  */
 module.exports = {
   platform: 'browser',
-  entryPoints: [path.resolve('src/renderer/index.tsx')],
+  entryPoints: [
+    path.resolve('src/renderer/index.tsx'),
+    path.resolve('src/renderer/worker.ts'),
+  ],
   bundle: true,
   target: 'chrome91', // electron version target
   plugins: [sassPlugin(), aliasResolverPlugin(), remarkPlugin()],
